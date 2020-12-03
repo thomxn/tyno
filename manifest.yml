@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sport-app-cluster
+  name: sport-app-cluster
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sport-app-cluster
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sport-app-cluster
+    spec:
+      containers:
+      - image: sports-hive
+        name: sports-hive
+        imagePullPolicy: Never
+        resources: {}
+        
+        ports:
+          - containerPort: 7000
+status: {}
