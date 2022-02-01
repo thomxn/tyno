@@ -8,10 +8,9 @@ import {
 } from 'sequelize'
 import { Address } from './address'
 interface UserAttributes {
-  id: number,
-  identity: string,
-  name: string,
-  email: string,
+  id: number
+  firstName: string
+  email: string
   phone: string
 }
 
@@ -22,8 +21,7 @@ export interface UserCreationAttributes
 export class User extends Model<UserAttributes, UserCreationAttributes>
   implements UserAttributes {
   public id: number
-  public identity: string
-  public name: string
+  public firstName: string
   public email: string
   public phone: string
 
@@ -47,12 +45,7 @@ export default function (sequelize: Sequelize): typeof User {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      identity: {
-        allowNull: false,
-        type: DataTypes.STRING(48),
-        unique: true
-      },
-      name: {
+      firstName: {
         allowNull: false,
         type: DataTypes.STRING
       },
