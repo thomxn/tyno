@@ -1,32 +1,21 @@
-import express from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
-import dotenv from 'dotenv'
-import routes from './routes'
-
+import app from './app'
 import logger from './utils/logger'
+import config from './config'
 
-// Load .ENV contants to process.env
-dotenv.config()
+const PORT = config.port
 
-const PORT: number = parseInt(process.env.PORT as string, 10)
+console.log(PORT)
 
-if (!PORT) {
-  logger.info(`Unable to obtain port ${PORT}`)
+if (PORT === null || PORT === undefined || PORT == NaN) {
+  logger.error('Please specify a proper port for the App')
   process.exit(1)
 }
 
-const app = express()
-
 try {
-  app.use(helmet())
-  app.use(cors())
-  app.use(express.json())
-  app.use('/api', routes)
-
   app.listen(PORT, () => {
-    logger.info(`\n\nServer is running on port ${PORT}\n`)
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    logger.info(`Server is running on port ${PORT} 🔥`)
   })
 } catch (err) {
-  console.log(err)
+  logger.error(err)
 }
