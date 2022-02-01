@@ -1,22 +1,24 @@
 'use strict'
 
 import Sequelize from 'sequelize'
-import config from '../config/config'
+import config from '../config'
 import logger from '../utils/logger'
 
 // Import models
 import User from './user'
 import Address from './address'
 
-const env = process.env.NODE_ENV || 'development'
+const env = config.nodeEnv
+
 const sequelize = new Sequelize.Sequelize(
-  config.database,
-  config.username,
-  config.password,
+  config.db.database,
+  config.db.username,
+  config.db.password,
   {
-    host: config.host,
+    host: config.db.host,
     dialect: 'postgres',
-    pool: config.pool,
+    pool: config.db.pool,
+    port: config.db.port,
     logQueryParameters: env === 'development',
     logging: (query, time) => {
       logger.info(time + 'ms' + ' ' + query)
@@ -34,7 +36,7 @@ sequelize
   .then(() => {
     logger.info('DB connection establised!\n')
   })
-  .catch(err => logger.error(JSON.stringify(err)))
+  .catch(err => console.log(err))
 
 const DB = {
   Users: User(sequelize),

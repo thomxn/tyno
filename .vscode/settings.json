@@ -14,17 +14,8 @@
 
   // Files to validate with Standard JS
   "standard.validate": ["javascript", "typescript"],
-  "standard.engine": "standardx",
+  "standard.engine": "ts-standard",
   "standard.usePackageJson": true,
-  "[typescript]": {
-    "editor.defaultFormatter": "numso.prettier-standard-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "numso.prettier-standard-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "numso.prettier-standard-vscode"
-  },
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "Night Wolf [dark blue] (No Italics)",
   "files.associations": {
